@@ -1,0 +1,15 @@
+{
+  "name": "fvtt-chatstyler-main",
+  "version": "1.0.0",
+  "description": "아... 롤꾸를 fvtt에서 하고싶어...!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^5.0.1"
+  }
+}
