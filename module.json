@@ -5,6 +5,10 @@
   "version": "#{VERSION}#",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
   "authors": [
     {
       "name": "RestInLOV3"

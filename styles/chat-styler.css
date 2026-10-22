@@ -1,0 +1,46 @@
+/* ---------------------------------------------------------------
+ * 같은 화자의 연속 메시지 시각적 병합
+ * dnd5e2 등 시스템/모듈 스타일이 더 구체적인 선택자로 테두리를 덮어쓰므로
+ * 병합 모양을 결정하는 속성은 !important로 고정
+ * --------------------------------------------------------------- */
+
+/* 이어지는 메시지: 위쪽을 이전 메시지에 붙임 */
+.chat-message.visually-merged {
+  margin-top: -8px !important;
+  border-top: none !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  padding-top: 4px;
+}
+
+/* 뒤에 이어지는 메시지가 있는 메시지: 아래쪽을 다음 메시지에 붙임
+ * (대화 중간 메시지는 visually-merged와 함께 붙어 위아래가 모두 평평해짐) */
+.chat-message.has-continuation {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  padding-bottom: 4px;
+}
+
+/* 병합된 메시지의 헤더(이름, 시간 등) 숨기기 */
+.chat-message.visually-merged .message-header {
+  display: none !important;
+}
+
+/* 대화 덩어리가 끝나는 메시지 아래 간격 */
+.chat-message.conversation-start:not(.has-continuation) {
+  margin-bottom: 8px;
+}
+
+/* 연속 메시지 덩어리가 끝난 뒤 다음 메시지와의 간격 */
+.chat-message.has-continuation + .chat-message:not(.visually-merged) {
+  margin-top: 8px;
+}
+
+/* ---------------------------------------------------------------
+ * Chat Portrait 호환: 본문에 중복으로 들어가는 이름 숨기기
+ * --------------------------------------------------------------- */
+.chat-message .message-content h4.chat-portrait-text-content-name-generic {
+  display: none;
+}
