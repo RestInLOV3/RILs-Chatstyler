@@ -19,12 +19,11 @@
     "requires": []
   },
   "esmodules": [
-    "scripts/chat-styler.js"
+    "scripts/main.js"
   ],
   "styles": [
     "styles/chat-styler.css"
   ],
-  
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",
   "download": "#{DOWNLOAD}#",

@@ -1,14 +1,14 @@
 {
-  "name": "fvtt-chatstyler-main",
+  "name": "rils-chatstyler",
   "version": "1.0.0",
-  "description": "아... 롤꾸를 fvtt에서 하고싶어...!",
-  "main": "index.js",
+  "private": true,
+  "description": "FVTT에서도 롤꾸가 하고싶어!",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "gulp",
+    "sync": "gulp sync"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "RestInLOV3",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^5.0.1"
   }

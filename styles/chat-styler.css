@@ -44,3 +44,21 @@
 .chat-message .message-content h4.chat-portrait-text-content-name-generic {
   display: none;
 }
+
+/* ---------------------------------------------------------------
+ * 본문 변환 결과
+ * --------------------------------------------------------------- */
+
+/* Roll20 스타일 텍스트: 링크처럼 생겼지만 클릭되지 않음
+ * (사용자가 넣은 인라인 스타일보다 우선하도록 !important) */
+.rils-chatstyler-styled {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* 단독 이미지 링크 */
+.rils-chatstyler-image {
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+}
