@@ -1,13 +1,13 @@
 {
-  "id": "chat-styler",
-  "title": "Chat Styler",
-  "description": "FVTT에서도 롤꾸가 하고싶어~",
+  "id": "rils-chatstyler",
+  "title": "RILs Chat Styler",
+  "description": "FVTT에서도 롤꾸가 하고싶어!",
   "version": "#{VERSION}#",
-  "library": "false",
+  "library": false,
   "manifestPlusVersion": "1.2.0",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "14"
   },
   "authors": [
     {
