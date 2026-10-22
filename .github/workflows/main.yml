@@ -1,22 +1,29 @@
-# Release를 publish하면 module.json과 module.zip을 만들어 그 Release에 첨부한다.
+# 버전 태그를 푸시하면 module.json과 module.zip을 만들어 Release에 첨부한다.
+# 해당 태그의 Release가 없으면 새로 만들고, 있으면 파일만 덮어쓴다.
 #
 # - 태그 형식: "v1.2.3" 또는 "1.2.3"
 # - 저장소의 module.json은 템플릿이다. version, url, manifest, download는 여기서 채운다.
-# - Release를 "수정"할 때는 실행되지 않고, "publish"할 때만 실행된다.
+# - GitHub 화면에서 Release를 직접 publish해도 실행된다.
 name: Release Module
 
 on:
+  push:
+    tags: ["v[0-9]*", "[0-9]*"]
   release:
     types: [published]
+
+# 같은 태그로 두 번 실행되면(태그 푸시 + Release publish) 하나씩 차례로 처리
+concurrency:
+  group: release-${{ github.ref_name }}
 
 permissions:
   contents: write
 
 env:
-  TAG: ${{ github.event.release.tag_name }}
+  TAG: ${{ github.event.release.tag_name || github.ref_name }}
   # Foundry가 업데이트를 확인할 때 쓰는 주소. 항상 최신 Release를 가리키므로 바뀌면 안 된다.
   MANIFEST_URL: https://github.com/${{ github.repository }}/releases/latest/download/module.json
-  DOWNLOAD_URL: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/module.zip
+  DOWNLOAD_URL: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name || github.ref_name }}/module.zip
   PROJECT_URL: https://github.com/${{ github.repository }}
 
 jobs:
@@ -42,7 +49,12 @@ jobs:
       - name: Create module.zip
         run: zip -r module.zip module.json README.md LICENSE scripts styles
 
-      - name: Upload to release
+      - name: Create or update release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload "$TAG" module.json module.zip --clobber
+        run: |
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release upload "$TAG" module.json module.zip --clobber
+          else
+            gh release create "$TAG" module.json module.zip --title "$TAG" --generate-notes
+          fi
