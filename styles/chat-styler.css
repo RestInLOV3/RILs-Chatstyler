@@ -28,16 +28,6 @@
   display: none !important;
 }
 
-/* 대화 덩어리가 끝나는 메시지 아래 간격 */
-.chat-message.conversation-start:not(.has-continuation) {
-  margin-bottom: 8px;
-}
-
-/* 연속 메시지 덩어리가 끝난 뒤 다음 메시지와의 간격 */
-.chat-message.has-continuation + .chat-message:not(.visually-merged) {
-  margin-top: 8px;
-}
-
 /* ---------------------------------------------------------------
  * Chat Portrait 호환: 본문에 중복으로 들어가는 이름 숨기기
  * --------------------------------------------------------------- */
