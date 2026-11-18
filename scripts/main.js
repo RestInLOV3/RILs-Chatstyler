@@ -1,5 +1,17 @@
 import { formatMessageContent } from "./format.js";
 import { mergeChatMessages } from "./merge.js";
+import { attachPlainInput, isPlainInputEnabled, registerPlainInputSetting } from "./plain-input.js";
+
+Hooks.once("init", registerPlainInputSetting);
+
+// v14 채팅 입력창(ProseMirror)을 일반 텍스트 입력창으로 교체
+// 입력창이 사이드바·팝아웃·알림 영역으로 옮겨질 때마다 따라가도록 매번 다시 붙임
+Hooks.on("renderChatInput", (app, elements) => {
+  if (isPlainInputEnabled()) attachPlainInput(elements["#chat-message"]);
+});
+Hooks.once("ready", () => {
+  if (isPlainInputEnabled()) attachPlainInput(document.querySelector("prose-mirror.chat-input"));
+});
 
 // 짧은 시간 안에 여러 번 호출되어도 병합은 한 번만 실행
 // (메시지가 렌더링된 직후에는 아직 DOM에 붙어 있지 않으므로 약간 늦게 실행)

@@ -54,6 +54,17 @@ https://example.com/picture.png
 - `http://` 또는 `https://`로 시작하고, 확장자가 `png`, `jpg`, `jpeg`, `gif`, `webp`, `bmp`인 주소만 인식합니다. (뒤에 붙는 `?쿼리`는 허용)
 - URL 앞뒤에 다른 텍스트가 있으면 변환하지 않습니다.
 
+### 5. 일반 텍스트 채팅 입력창 (v14)
+
+Foundry v14부터 채팅 입력창이 서식 편집기(ProseMirror)로 바뀌어, 보내는 메시지가 `<p>...</p>`로 감싸지고 붙여넣기 시 서식이 따라오며 Home/End 키 동작도 달라졌습니다.
+**설정 → 모듈 설정 → 채팅 입력창 HTML 제거하기**를 켜면(기본값: 켬) v13처럼 일반 텍스트 입력창을 사용합니다.
+
+- 입력한 글자가 HTML로 감싸지지 않고 그대로 전송됩니다. 줄바꿈은 `Shift+Enter`입니다.
+- 붙여넣기는 항상 일반 텍스트로 들어갑니다.
+- 위/아래 화살표로 이전에 보낸 메시지를 불러올 수 있습니다. (입력 중인 내용이 없을 때)
+- 월드 설정이라 GM이 바꾸면 모든 사용자에게 적용되며, 바꾼 뒤에는 새로고침이 필요합니다.
+- v13에서는 원래 일반 입력창이므로 아무 동작도 하지 않습니다.
+
 ## 설치
 
 Foundry VTT의 **애드온 모듈 → 모듈 설치** 화면에서 아래 매니페스트 URL을 붙여 넣으세요.
@@ -62,7 +73,7 @@ Foundry VTT의 **애드온 모듈 → 모듈 설치** 화면에서 아래 매니
 https://github.com/RestInLOV3/RILs-Chatstyler/releases/latest/download/module.json
 ```
 
-설치한 뒤 월드의 **모듈 관리**에서 **RILs Chat Styler**를 활성화하면 됩니다. 별도 설정 항목은 없습니다.
+설치한 뒤 월드의 **모듈 관리**에서 **RILs Chat Styler**를 활성화하면 됩니다. 설정 항목은 [일반 텍스트 채팅 입력창](#5-일반-텍스트-채팅-입력창-v14) 하나입니다.
 
 ## 호환성
 
@@ -98,6 +109,7 @@ module.json            모듈 매니페스트 (릴리스 시 값 채움)
 scripts/main.js        진입점. Foundry 훅 등록
 scripts/format.js      본문 변환 (마크다운 강조, Roll20 스타일 텍스트, 이미지 링크)
 scripts/merge.js       같은 화자의 연속 메시지 병합
+scripts/plain-input.js v14 채팅 입력창을 일반 텍스트 입력창으로 교체
 styles/chat-styler.css 병합 모양 및 변환 결과 스타일
 ```
 

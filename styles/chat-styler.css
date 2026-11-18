@@ -52,3 +52,50 @@
   height: auto;
   pointer-events: none;
 }
+
+/* ---------------------------------------------------------------
+ * 일반 텍스트 채팅 입력창 (설정: 채팅 입력창 HTML 제거하기)
+ * 숨긴 ProseMirror 입력창 자리에 들어가므로 v14 입력창과 같은 색·크기를 사용
+ * --------------------------------------------------------------- */
+.rils-chatstyler-hidden-editor {
+  display: none !important;
+}
+
+textarea.rils-chatstyler-plain-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--chat-input-height, 128px);
+  min-height: 0;
+  margin: 0;
+  padding: 4px 6px;
+  resize: none;
+  pointer-events: all;
+  font-family: var(--font-body);
+  font-size: var(--font-size-14, 14px);
+  color: var(--text-color, var(--color-text-primary));
+  background: var(--background-color, var(--color-cool-5));
+  border: 2px solid var(--border-color, var(--color-cool-4));
+  border-radius: 4px;
+  transition: box-shadow 250ms, outline 250ms, height 100ms;
+}
+
+textarea.rils-chatstyler-plain-input::placeholder {
+  color: var(--placeholder-color);
+  font-style: italic;
+}
+
+/* 사이드바 채팅 탭: v14는 서식 메뉴 높이(50px)까지 잡지만 메뉴가 없으므로 입력창 높이만 */
+.chat-sidebar textarea.rils-chatstyler-plain-input {
+  flex: 0 0 var(--chat-input-height, 128px);
+}
+
+/* 채팅 알림 영역(사이드바 접힘): 평소엔 작게, 포커스되면 원래 높이로 */
+#chat-notifications textarea.rils-chatstyler-plain-input:not(:focus) {
+  height: 60px;
+  align-self: end;
+}
+
+/* 서식 메뉴가 없으므로 포커스 시 메뉴 높이만큼 늘어나지 않게 함 */
+#chat-notifications:has(.rils-chatstyler-plain-input) {
+  --chat-menu-height: 0px !important;
+}
